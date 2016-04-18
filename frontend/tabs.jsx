@@ -23,14 +23,8 @@ var Tabs = React.createClass({
               return self.header(m, index, self);
             }
             return <li onClick={self.clicked.bind(self, index)}><h1>{m.title}</h1></li>;
-
-
           })
-
-
-
           }
-
         </ul>
       </div>
     );

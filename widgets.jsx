@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Tabs = require('./frontend/tabs.jsx');
+var Clock = require('./frontend/clock.jsx');
 
 var items = [
   {title: 'Home', content: 'Something'},
@@ -13,6 +14,9 @@ var items = [
 document.addEventListener("DOMContentLoaded", function () {
   ReactDOM.render(
     <Tabs items={ items } />,
-    document.getElementById('main')
+    document.getElementById('tabs')
+  );
+  ReactDOM.render(
+    <Clock/>, document.getElementById('clock')
   );
 });
