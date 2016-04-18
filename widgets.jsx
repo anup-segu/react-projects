@@ -1,14 +1,18 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Tabs = require('./frontend/tabs.jsx');
 
-var MyComponent = React.createClass({
-  render: function () {
-    return(
-      <div>Hello World</div>
-    );
-  }
-});
+var items = [
+  {title: 'Home', content: 'Something'},
+  {title: 'Services', content: 'Something about Services'},
+  {title: 'About', content: 'Something about About'},
+  {title: 'Contact Us', content: 'Something about Contact Us'},
+];
+
 
 document.addEventListener("DOMContentLoaded", function () {
-  ReactDOM.render(<MyComponent />, document.getElementById('main'));
+  ReactDOM.render(
+    <Tabs items={ items } />,
+    document.getElementById('main')
+  );
 });
