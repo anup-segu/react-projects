@@ -28,8 +28,6 @@ class Api::TodosController < ApplicationController
   def destroy
     @todo = Todo.find_by(params[:id])
     @todo.destroy!
-
-    index
   end
 
   private
