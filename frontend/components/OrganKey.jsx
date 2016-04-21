@@ -29,10 +29,8 @@ var OrganKey = React.createClass({
 
   render: function() {
     if (KeyStore.has_key(this.props.noteName)) {
-      console.log("yes");
       var className = "key playing";
     } else {
-      console.log("no");
       className = "key";
     }
 

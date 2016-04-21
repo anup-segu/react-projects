@@ -5,6 +5,10 @@ var KeyStore = new Store(dispatcher);
 
 var _keys = [];
 
+KeyStore.all = function() {
+  return _keys.slice();
+};
+
 KeyStore.has_key = function(noteName) {
   if (_keys.indexOf(noteName) > -1) {
     return true;
@@ -15,7 +19,9 @@ KeyStore.has_key = function(noteName) {
 KeyStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
   case "ADD_NOTE":
-    _keys.push(payload.noteName);
+    if(_keys.indexOf(payload.noteName) < 0) {
+      _keys.push(payload.noteName);
+    }
     KeyStore.__emitChange();
     break;
   case "REMOVE_NOTE":
