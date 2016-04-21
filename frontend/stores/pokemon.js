@@ -10,6 +10,10 @@ var resetPokemons = function (pokemons) {
   });
 };
 
+var resetPokemon = function (pokemon) {
+  _pokemons[pokemon.id] = pokemon;
+};
+
 var PokemonStore = new Store(dispatcher);
 
 PokemonStore.all = function() {
@@ -21,10 +25,18 @@ PokemonStore.all = function() {
   return result;
 };
 
+PokemonStore.find = function(id) {
+  return _pokemons[id];
+};
+
 PokemonStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
   case "POKEMONS_RECEIVED":
     resetPokemons(payload.pokemons);
+    this.__emitChange();
+    break;
+  case "POKEMON_RECEIVED":
+    resetPokemon(payload.pokemon);
     this.__emitChange();
     break;
   }

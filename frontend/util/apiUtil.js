@@ -9,5 +9,15 @@ module.exports = {
         ServerActions.receiveAllPokemons(result);
       }
     });
+  },
+
+  fetchPokemon: function(id) {
+    $.ajax({
+      url: "api/pokemon/" + id,
+      type: "GET",
+      success: function(result) {
+        ServerActions.receiveSinglePokemon(result);
+      }
+    });
   }
 };
