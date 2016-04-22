@@ -14,5 +14,12 @@ module.exports = {
       actionType: PokemonConstants.POKEMON_RECEIVED,
       pokemon: pokemon
     });
+  },
+
+  receiveSingleToy: function(toy) {
+    dispatcher.dispatch({
+      actionType: PokemonConstants.TOY_RECEIVED,
+      toy: toy
+    });
   }
 };

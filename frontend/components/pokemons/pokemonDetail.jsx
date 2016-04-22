@@ -1,6 +1,7 @@
 var React = require('react'),
     PokemonStore = require('../../stores/pokemon.js'),
-    ClientActions = require('../../actions/clientActions.js');
+    ClientActions = require('../../actions/clientActions.js'),
+    ToysIndex = require('../toys/toysIndex.jsx');
 
 var PokemonDetail = React.createClass({
   getStateFromStore: function() {
@@ -36,28 +37,30 @@ var PokemonDetail = React.createClass({
         <div className="pokemon-detail-pane">
           <div className="detail">
             <img src={this.state.pokemon.image_url} />
-            <p>Name: {this.state.pokemon.name}</p>
             <p>
-              <span>Attack</span>
-              <span>:</span>
-              <span>{this.state.pokemon.attack}</span>
+              Name: {this.state.pokemon.name}
             </p>
             <p>
-              <span>Defense</span>
-              <span>:</span>
-              <span>{this.state.pokemon.defense}</span>
+              Attack: {this.state.pokemon.attack}
             </p>
             <p>
-              <span>Poke_type</span>
-              <span>:</span>
-              <span>{this.state.pokemon.poke_type}</span>
+              Defense: {this.state.pokemon.defense}
             </p>
             <p>
-              <span>Moves</span>
-              <span>:</span>
-              <span>{this.state.pokemon.moves}</span>
+              Poke_type: {this.state.pokemon.poke_type}
+            </p>
+            <p>
+              Moves: {this.state.pokemon.moves}
             </p>
           </div>
+          <div>
+            <h2 className="detail-header">Toys</h2>
+            <ToysIndex toys={this.state.pokemon.toys} />
+          </div>
+        </div>
+
+        <div>
+          {this.props.children}
         </div>
       </div>
     );

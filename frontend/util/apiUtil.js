@@ -19,5 +19,15 @@ module.exports = {
         ServerActions.receiveSinglePokemon(result);
       }
     });
+  },
+
+  fetchToy: function(id) {
+    $.ajax({
+      url: "api/toys/" + id,
+      type: "GET",
+      success: function(result) {
+        ServerActions.receiveSingleToy(result);
+      }
+    });
   }
 };

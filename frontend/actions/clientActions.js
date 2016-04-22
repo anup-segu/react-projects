@@ -7,5 +7,9 @@ module.exports = {
 
   fetchPokemon: function (id) {
     apiUtil.fetchPokemon(id);
+  },
+
+  fetchToy: function (id) {
+    apiUtil.fetchToy (id);
   }
 };

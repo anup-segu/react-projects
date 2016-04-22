@@ -4,7 +4,8 @@ var React = require('react'),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
     PokemonDetail = require('./components/pokemons/pokemonDetail.jsx'),
-    HashHistory = require('react-router').hashHistory;
+    HashHistory = require('react-router').hashHistory,
+    ToyDetail = require('./components/toys/toyDetail.jsx');
 
 var App = React.createClass({
   childContextTypes: {
@@ -20,7 +21,9 @@ var App = React.createClass({
         <div className="pokemon-index-pane">
           <PokemonsIndex />
         </div>
-        <div>{ this.props.children }</div>
+        <div>
+          { this.props.children }
+        </div>
       </div>
     );
   }
@@ -28,7 +31,10 @@ var App = React.createClass({
 
 var routes = (
   <Route path="/" component={App}>
-    <Route path="pokemon/:pokemonId" component={PokemonDetail}></Route>
+    <Route path="pokemon/:pokemonId" component={PokemonDetail}>
+      <Route path="toys/:toyId" component={ToyDetail}>
+      </Route>
+    </Route>
   </Route>
 );
 

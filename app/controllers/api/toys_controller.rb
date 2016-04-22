@@ -8,10 +8,13 @@ class Api::ToysController < ApplicationController
     end
   end
 
+  def show
+    @toy = Toy.find(params[:id])
+  end
+
   private
 
   def toy_params
     params.require(:toy).permit(:happiness, :name, :pokemon_id, :price)
   end
 end
-
