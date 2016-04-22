@@ -10,9 +10,21 @@ var Map = React.createClass({
       center: {lat: 37.7758, lng: -122.435},
       zoom: 13
     };
+
+    this.markers = {};
+
     this.map = new google.maps.Map(mapDOMNode, mapOptions);
     this.map.addListener("idle", function(){
-      ClientActions.fetchbenches();
+      var latLngBounds = this.getBounds();
+      var ne = latLngBounds.getNorthEast();
+      var sw = latLngBounds.getSouthWest();
+
+      var bounds = {
+        northEast: { "lat": ne.lat(), "lng": ne.lng() },
+        southWest: { "lat": sw.lat(), "lng": sw.lng() }
+      };
+
+      ClientActions.fetchbenches(bounds);
     });
 
 

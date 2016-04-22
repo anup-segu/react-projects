@@ -5,6 +5,7 @@ var BenchStore = new Store(AppDispatcher);
 var BenchConstants = require('../constants/bench_constants.js');
 
 var resetBenches = function (benches) {
+  _benches = {};
   benches.forEach( function (bench) {
     _benches[bench.id] = bench;
   });
