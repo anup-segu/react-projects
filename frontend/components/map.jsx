@@ -1,15 +1,37 @@
 var React = require('react');
+var BenchStore = require('../stores/bench.js');
+var ClientActions = require('../actions/client_actions.js');
 
 var Map = React.createClass({
   // APIKEY: AIzaSyA--QaFNrxg26Vhlu8aPbHGKyqKf3_42C4
   componentDidMount: function(){
-      var mapDOMNode = this.refs.map;
-      var mapOptions = {
-        center: {lat: 37.7758, lng: -122.435},
-        zoom: 13
-      };
-      this.map = new google.maps.Map(mapDOMNode, mapOptions);
-    },
+    var mapDOMNode = this.refs.map;
+    var mapOptions = {
+      center: {lat: 37.7758, lng: -122.435},
+      zoom: 13
+    };
+    this.map = new google.maps.Map(mapDOMNode, mapOptions);
+    this.map.addListener("idle", function(){
+      ClientActions.fetchbenches();
+    });
+
+
+    BenchStore.addListener(this._onChange);
+  },
+
+  _onChange: function(){
+    var benches = BenchStore.all();
+    Object.keys(benches).forEach(function (benchID){
+      var marker = new google.maps.Marker({
+        position: {
+            lat: benches[benchID].lat,
+            lng: benches[benchID].lng
+        },
+        map: this.map,
+        title: benches[benchID].description
+      });
+    }.bind(this));
+  },
 
   render: function(){
     return (
