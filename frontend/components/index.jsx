@@ -6,12 +6,12 @@ var Index = React.createClass({
     return { benches: BenchStore.all()};
   },
 
-  _onChange: function(){
-    this.setState({ benches: BenchStore.all() });
-  },
-
   componentDidMount: function(){
     BenchStore.addListener(this._onChange);
+  },
+
+  _onChange: function(){
+    this.setState({ benches: BenchStore.all() });
   },
 
   render: function(){

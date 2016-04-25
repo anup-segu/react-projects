@@ -25,7 +25,7 @@ var AppRouter = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Search}/>
-      <Route path="/bench/new" component={BenchForm}></Route>
+      <Route path="/benches/new" component={BenchForm}></Route>
     </Route>
   </Router>
 );

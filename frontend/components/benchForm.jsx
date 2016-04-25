@@ -13,11 +13,20 @@ var BenchForm = React.createClass({
     description: "",
     seating: "",
     lat: "",
-    lng: "",
+    lng: ""
   },
 
   getInitialState: function(){
     return this.blankAtttrs;
+  },
+
+  componentDidMount: function(){
+    if (this.props.location.query.lat) {
+      this.setState({
+        lat: this.props.location.query.lat,
+        lng: this.props.location.query.lng
+      });
+    }
   },
 
   createBench: function(event){
@@ -59,7 +68,7 @@ var BenchForm = React.createClass({
           <input
             type="text"
             id="latitude_field"
-            valueLink={this.linkState("lat")}></input>
+            valueLink={this.linkState("lat")} disabled></input>
         </div>
 
         <div>
@@ -67,7 +76,7 @@ var BenchForm = React.createClass({
           <input
             type="text"
             id="longitude_field"
-            valueLink={this.linkState("lng")}></input>
+            valueLink={this.linkState("lng")} disabled></input>
         </div>
 
         <button>Create Bench</button>
