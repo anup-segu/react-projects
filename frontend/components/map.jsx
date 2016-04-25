@@ -31,7 +31,16 @@ var Map = React.createClass({
     BenchStore.addListener(this._onChange);
   },
 
+  _clearMarkers: function() {
+    console.log(Object.keys(this.markers));
+    Object.keys(this.markers).forEach( function(benchID){
+      this.markers[benchID].setMap(null);
+      delete this.markers[benchID];
+    }.bind(this));
+  },
+
   _onChange: function(){
+    this._clearMarkers();
     var benches = BenchStore.all();
     Object.keys(benches).forEach(function (benchID){
       var marker = new google.maps.Marker({
@@ -39,10 +48,20 @@ var Map = React.createClass({
             lat: benches[benchID].lat,
             lng: benches[benchID].lng
         },
-        map: this.map,
         title: benches[benchID].description
       });
+      this.markers[benchID] = marker;
     }.bind(this));
+
+    Object.keys(this.markers).forEach(function (benchID){
+      if (benches[benchID] !== undefined) {
+        this.markers[benchID].setMap(this.map);
+        console.log("marker_placed");
+      }
+    }.bind(this));
+
+    console.log(benches);
+    console.log(this.markers);
   },
 
   render: function(){
