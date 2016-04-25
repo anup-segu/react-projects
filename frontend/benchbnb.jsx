@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Search = require('./components/search.jsx');
+var BenchForm = require('./components/benchForm.jsx');
 
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
@@ -24,6 +25,7 @@ var AppRouter = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Search}/>
+      <Route path="/bench/new" component={BenchForm}></Route>
     </Route>
   </Router>
 );

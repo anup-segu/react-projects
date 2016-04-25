@@ -32,7 +32,6 @@ var Map = React.createClass({
   },
 
   _clearMarkers: function() {
-    console.log(Object.keys(this.markers));
     Object.keys(this.markers).forEach( function(benchID){
       this.markers[benchID].setMap(null);
       delete this.markers[benchID];
@@ -56,12 +55,8 @@ var Map = React.createClass({
     Object.keys(this.markers).forEach(function (benchID){
       if (benches[benchID] !== undefined) {
         this.markers[benchID].setMap(this.map);
-        console.log("marker_placed");
       }
     }.bind(this));
-
-    console.log(benches);
-    console.log(this.markers);
   },
 
   render: function(){

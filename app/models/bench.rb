@@ -1,5 +1,5 @@
 class Bench < ActiveRecord::Base
-  validates :description, :lat, :lng, presence: true
+  validates :description, :lat, :lng, :seating, presence: true
 
   def self.in_bounds(bounds)
     lat_max = bounds["northEast"]["lat"].to_f
