@@ -32,7 +32,7 @@ var Map = React.createClass({
       ClientActions.fetchbenches(bounds);
     });
 
-    this.map.addListener("click", function (e){
+    this.map.addListener("dblclick", function (e){
       this.latlng = {lat: e.latLng.lat(), lng: e.latLng.lng()};
     }.bind(this));
 
@@ -76,7 +76,7 @@ var Map = React.createClass({
 
   render: function(){
     return (
-      <div className="map" ref="map" onClick={this._handleClick}>
+      <div className="map" ref="map" onDoubleClick={this._handleClick}>
 
       </div>
     );
